@@ -97,6 +97,11 @@
   .btn-mine{background:#1E9E5A;color:#fff;}
   .btn-locked{background:#F0ECE2;color:#B7AE9B;border:2px solid #DDD3BF;box-shadow:none;cursor:not-allowed;}
 
+  .comment-open{
+    cursor:pointer;background:#fff;color:#2B2722;border:2px dashed #2B2722;border-radius:999px;
+    padding:9px 18px;font-weight:800;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 #2B2722;
+  }
+
   footer.foot{text-align:center;margin-top:54px;color:#B0A892;font-size:12.5px;font-weight:500;}
 
   /* ---- vote modal ---- */
@@ -143,6 +148,9 @@
     <div class="rules">
       <span class="rule">🗳️ おひとり <span class="hl">1票</span></span>
       <span class="rule">🔁 投票はやり直しOK</span>
+    </div>
+    <div style="margin-top:14px;">
+      <button class="comment-open" type="button" onclick="openCommentModal()">💬 投票せずにコメントだけ送る</button>
     </div>
   </header>
 
@@ -206,7 +214,10 @@ var state = {
   votedId: null,
   expanded: {},
   pendingVote: null,
-  commentInput: ''
+  commentInput: '',
+  pendingComment: false,
+  commentOnly: '',
+  commentDone: false
 };
 
 function load(){
@@ -234,6 +245,19 @@ function postVote(articleId, comment){
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ action:'vote', articleId: articleId, voterId: voterId(), comment: comment || '' })
+    });
+  } catch (e) {}
+}
+
+function postComment(comment){
+  var url = (WEB_APP_URL || '').trim();
+  if (!url) return;
+  try {
+    fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action:'comment', voterId: voterId(), comment: comment || '' })
     });
   } catch (e) {}
 }
@@ -274,6 +298,30 @@ function toggleExpand(id){
   render();
 }
 
+/* ---- comment-only (投票せずにコメント) ---- */
+function openCommentModal(){
+  state.pendingComment = true;
+  state.commentOnly = '';
+  render();
+}
+function closeCommentModal(){
+  state.pendingComment = false;
+  render();
+}
+function sendCommentOnly(){
+  var c = (state.commentOnly || '').trim();
+  if (!c){ closeCommentModal(); return; }
+  postComment(c);
+  state.pendingComment = false;
+  state.commentOnly = '';
+  state.commentDone = true;
+  render();
+}
+function dismissCommentThanks(){
+  state.commentDone = false;
+  render();
+}
+
 /* ---- helpers ---- */
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -289,11 +337,12 @@ function render(){
 
   /* banner */
   var bannerEl = document.getElementById('banner');
+  var bannerHtml = '';
   if (votedId != null){
     var myComment = (state.commentInput || '').trim();
     var commentHtml = myComment.length > 0
       ? '<div class="mycomment">💬 ' + esc(myComment) + '</div>' : '';
-    bannerEl.innerHTML =
+    bannerHtml +=
       '<div class="thanks">' +
         '<div class="emoji">🎉</div>' +
         '<div class="body">' +
@@ -303,9 +352,16 @@ function render(){
         '</div>' +
         '<button class="redo" type="button" onclick="cancelVote()">投票しなおす</button>' +
       '</div>';
-  } else {
-    bannerEl.innerHTML = '';
   }
+  if (state.commentDone){
+    bannerHtml +=
+      '<div style="margin:0 auto 24px;max-width:680px;background:#4DABF7;color:#fff;border:2px solid #1c6fc0;border-radius:18px;padding:13px 18px;display:flex;align-items:center;gap:12px;box-shadow:4px 5px 0 #1c6fc0;">' +
+        '<div style="font-size:22px;">💬</div>' +
+        '<div style="flex:1;min-width:0;font-weight:800;font-size:14px;">コメントを送信しました。ありがとうございます！</div>' +
+        '<button type="button" onclick="dismissCommentThanks()" style="cursor:pointer;background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.7);border-radius:999px;padding:6px 12px;font-weight:700;font-size:12px;font-family:inherit;white-space:nowrap;">閉じる</button>' +
+      '</div>';
+  }
+  bannerEl.innerHTML = bannerHtml;
 
   /* cards */
   var grid = document.getElementById('grid');
@@ -400,6 +456,36 @@ function render(){
       '</div>';
     var box = document.getElementById('comment-box');
     if (box){ box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
+  } else if (state.pendingComment){
+    var cocount = (state.commentOnly || '').length;
+    modalRoot.innerHTML =
+      '<div class="overlay" onclick="if(event.target===this)closeCommentModal()">' +
+        '<div class="modal">' +
+          '<div class="topbar" style="background:#4DABF7;"></div>' +
+          '<div class="pad">' +
+            '<div class="mhead">' +
+              '<div class="mnum" style="background:#4DABF7;">💬</div>' +
+              '<div style="flex:1;min-width:0;">' +
+                '<div class="mlabel">投票せずにコメント</div>' +
+                '<div class="mtitle">ひとことコメントを送る</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="guide">' +
+              '<div class="gl">🧭 コメントのヒント（参考まで）</div>' +
+              '<div class="gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
+            '</div>' +
+            '<label class="clabel">💬 コメント</label>' +
+            '<textarea id="comment-only-box" maxlength="200" rows="3" placeholder="感想や応援メッセージをどうぞ（投票はしません）" oninput="state.commentOnly=this.value;document.getElementById(\'cocount\').textContent=this.value.length+\' / 200\';">' + esc(state.commentOnly) + '</textarea>' +
+            '<div class="ccount" id="cocount">' + cocount + ' / 200</div>' +
+            '<div class="mactions">' +
+              '<button class="btn-cancelvote" type="button" onclick="closeCommentModal()">やめる</button>' +
+              '<button class="btn-confirm" type="button" style="background:#4DABF7;" onclick="sendCommentOnly()">送信する</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    var cbox = document.getElementById('comment-only-box');
+    if (cbox){ cbox.focus(); cbox.setSelectionRange(cbox.value.length, cbox.value.length); }
   } else {
     modalRoot.innerHTML = '';
   }
