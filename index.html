@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みんなで選ぶ AI記事グランプリ ｜ AI未来学院 初級 課題4</title>
+<meta name="description" content="受講生19作品の力作がそろいました。気になる記事を読んで、いちばん良かった1作品に投票しよう！">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:radial-gradient(circle at 12% 8%,#FFE8C2 0,transparent 38%),
+               radial-gradient(circle at 88% 4%,#FFD6E7 0,transparent 32%),
+               radial-gradient(circle at 50% 100%,#D8F0FF 0,transparent 45%),
+               #FFF8EE;
+    min-height:100vh;
+    font-family:'Noto Sans JP',sans-serif;
+    color:#33302A;
+  }
+  ::selection{background:#FFD43B;}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+  .wrap{max-width:1280px;margin:0 auto;padding:34px 22px 96px;}
+
+  /* ---- header ---- */
+  header.hero{text-align:center;padding:18px 0 26px;position:relative;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid #2B2722;
+    border-radius:999px;padding:6px 16px;font-weight:700;font-size:13px;box-shadow:3px 3px 0 #2B2722;
+  }
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+  h1.title{
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:clamp(34px,6vw,60px);
+    line-height:1.08;margin:18px 0 6px;letter-spacing:.01em;
+  }
+  h1.title .accent{color:#FF6B6B;}
+  h1.title .gp{
+    display:inline-block;background:#FFD43B;padding:0 12px;border-radius:14px;
+    box-shadow:3px 3px 0 #2B2722;transform:rotate(-1.5deg);
+  }
+  .lead{font-size:16px;font-weight:500;color:#6B6455;max-width:560px;margin:16px auto 0;line-height:1.7;}
+  .lead b{color:#33302A;}
+  .rules{display:inline-flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center;}
+  .rule{background:#fff;border:2px solid #2B2722;border-radius:999px;padding:7px 15px;font-weight:700;font-size:13px;}
+  .rule .hl{color:#FF6B6B;}
+
+  /* ---- thank-you banner ---- */
+  .thanks{
+    position:sticky;top:14px;z-index:30;margin:0 auto 24px;max-width:680px;background:#1E9E5A;color:#fff;
+    border:2px solid #14633a;border-radius:18px;padding:14px 20px;display:flex;align-items:center;gap:14px;
+    box-shadow:4px 5px 0 #14633a;
+  }
+  .thanks .emoji{font-size:26px;animation:pulse 1.6s ease-in-out infinite;}
+  .thanks .body{flex:1;min-width:0;}
+  .thanks .t1{font-weight:800;font-size:15px;}
+  .thanks .t2{font-size:13px;opacity:.92;}
+  .thanks .mycomment{margin-top:7px;background:rgba(255,255,255,.16);border-radius:10px;padding:7px 11px;font-size:12.5px;line-height:1.6;}
+  .thanks .redo{
+    cursor:pointer;background:rgba(255,255,255,.18);color:#fff;border:2px solid rgba(255,255,255,.7);
+    border-radius:999px;padding:7px 14px;font-weight:700;font-size:12.5px;font-family:inherit;white-space:nowrap;
+  }
+
+  /* ---- grid + cards ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(355px,1fr));gap:22px;}
+  .card{
+    position:relative;background:#fff;border:2px solid #2B2722;border-radius:22px;padding:0 0 20px;
+    box-shadow:5px 6px 0 rgba(43,39,34,.14);display:flex;flex-direction:column;overflow:hidden;
+  }
+  .card .accentbar{height:8px;}
+  .card .inner{padding:18px 20px 0;display:flex;flex-direction:column;gap:13px;flex:1;}
+  .card .head{display:flex;align-items:center;gap:12px;}
+  .card .numbox{
+    flex:none;width:50px;height:50px;border-radius:15px;border:2px solid #2B2722;display:flex;align-items:center;
+    justify-content:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:20px;color:#fff;
+    text-shadow:1px 1px 0 rgba(0,0,0,.25);box-shadow:2px 2px 0 #2B2722;
+  }
+  .card .entry{font-weight:700;font-size:12px;color:#A39A86;letter-spacing:.14em;}
+  .card h3{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:19px;line-height:1.45;margin:0;text-wrap:pretty;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;border-width:1.5px;border-style:solid;}
+  .point{background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:14px;padding:13px 15px;}
+  .point .label{font-weight:800;font-size:12.5px;color:#C99A1E;margin-bottom:7px;letter-spacing:.02em;}
+  .point .textwrap{position:relative;}
+  .point .text{white-space:pre-wrap;font-size:13.5px;line-height:1.75;color:#4A463D;overflow:hidden;}
+  .point .fade{position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(transparent,#FFFBF2);pointer-events:none;}
+  .point .toggle{margin-top:6px;cursor:pointer;background:none;border:none;color:#C99A1E;font-weight:800;font-size:12.5px;font-family:inherit;padding:2px 0;}
+  .actions{padding:14px 20px 0;display:flex;gap:10px;}
+  .btn{
+    flex:1;text-align:center;text-decoration:none;border:2px solid #2B2722;border-radius:13px;padding:11px 8px;
+    font-weight:800;font-size:13.5px;font-family:inherit;box-shadow:2px 2px 0 #2B2722;cursor:pointer;
+  }
+  .btn-read{background:#fff;color:#2B2722;}
+  .btn-vote{background:#FF6B6B;color:#fff;}
+  .btn-mine{background:#1E9E5A;color:#fff;}
+  .btn-locked{background:#F0ECE2;color:#B7AE9B;border:2px solid #DDD3BF;box-shadow:none;cursor:not-allowed;}
+
+  footer.foot{text-align:center;margin-top:54px;color:#B0A892;font-size:12.5px;font-weight:500;}
+
+  /* ---- vote modal ---- */
+  .overlay{
+    position:fixed;inset:0;z-index:90;background:rgba(43,39,34,.55);backdrop-filter:blur(3px);
+    display:flex;align-items:center;justify-content:center;padding:24px 16px;
+  }
+  .modal{
+    width:100%;max-width:460px;background:#FFF8EE;border:2.5px solid #2B2722;border-radius:24px;
+    box-shadow:8px 10px 0 rgba(43,39,34,.4);overflow:hidden;
+  }
+  .modal .topbar{height:10px;}
+  .modal .pad{padding:22px 24px 24px;}
+  .modal .mhead{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
+  .modal .mnum{
+    flex:none;width:46px;height:46px;border-radius:14px;border:2px solid #2B2722;display:flex;align-items:center;
+    justify-content:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:18px;color:#fff;box-shadow:2px 2px 0 #2B2722;
+  }
+  .modal .mlabel{font-size:11px;font-weight:700;color:#A39A86;letter-spacing:.12em;}
+  .modal .mtitle{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:15px;line-height:1.4;text-wrap:pretty;}
+  .guide{margin-top:16px;background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:13px;padding:12px 14px;}
+  .guide .gl{font-weight:800;font-size:12px;color:#C99A1E;margin-bottom:5px;}
+  .guide .gt{font-size:12px;line-height:1.7;color:#6B6455;}
+  .guide .gt b{color:#33302A;}
+  .clabel{display:block;font-weight:800;font-size:13px;margin:16px 0 7px;}
+  .clabel .opt{color:#A39A86;font-weight:600;font-size:11.5px;}
+  textarea{
+    width:100%;resize:vertical;padding:11px 13px;border:2px solid #2B2722;border-radius:13px;font-size:13.5px;
+    line-height:1.6;font-family:inherit;outline:none;background:#fff;
+  }
+  .ccount{text-align:right;font-size:11px;color:#B0A892;margin-top:3px;}
+  .mactions{display:flex;gap:10px;margin-top:14px;}
+  .btn-cancelvote{flex:none;cursor:pointer;background:#fff;color:#2B2722;border:2px solid #2B2722;border-radius:13px;padding:12px 18px;font-weight:800;font-size:14px;font-family:inherit;}
+  .btn-confirm{flex:1;cursor:pointer;background:#FF6B6B;color:#fff;border:2px solid #2B2722;border-radius:13px;padding:12px 8px;font-weight:800;font-size:15px;font-family:inherit;box-shadow:3px 3px 0 #2B2722;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="badge"><span class="dot"></span>AI未来学院　初級　課題4</div>
+    <h1 class="title"><span class="accent">みんな</span>で選ぶ<br>AI記事 <span class="gp">グランプリ</span></h1>
+    <p class="lead">受講生 19作品の力作がそろいました。<br>気になる記事を読んで、<b>いちばん良かった1作品</b>に投票しよう！</p>
+    <div class="rules">
+      <span class="rule">🗳️ おひとり <span class="hl">1票</span></span>
+      <span class="rule">🔁 投票はやり直しOK</span>
+    </div>
+  </header>
+
+  <div id="banner"></div>
+  <div id="grid" class="grid"></div>
+
+  <footer class="foot">
+    AI未来学院 初級 課題4 ・ 全19作品 ／ 投票は記事への敬意をこめて、1作品に。
+  </footer>
+</div>
+
+<div id="modal-root"></div>
+
+<script>
+/* ============================================================
+ *  設定（SETTINGS）
+ *  共有集計を有効にするには、Google Apps Script を公開して得た
+ *  ウェブアプリURL（https://script.google.com/macros/s/…/exec）を
+ *  下の WEB_APP_URL に貼り付けてください。
+ *  手順は apps-script/セットアップ手順.md を参照。
+ *  空のままでも、見た目と投票動作はそのまま確認できます
+ *  （その端末内だけの記録）。
+ * ============================================================ */
+var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxQmZzqgg4ANgShQ0naPK9YH7genUbmz71KXUJH8ot3mU7pA5undv5-ZmqCKrZ4xpbz/exec";
+
+/* ---- 作品データ（提出内容を忠実に転記。個人名は含めません） ---- */
+var PALETTE = ['#FF6B6B','#FF922B','#F5B700','#51CF66','#1FB8C9','#4DABF7','#9775FA','#F06595','#20A86B','#E8590C'];
+var TOOLS = {
+  'Claude':     ['#FBE4D8','#C14A24'],
+  'Gemini':     ['#E1ECFE','#2563C9'],
+  'ChatGPT':    ['#D9F2E8','#0E7C5A'],
+  'Perplexity': ['#D6F1F5','#0E7490'],
+  'NotebookLM': ['#EAE2FB','#6D44C9']
+};
+
+var ARTICLES = [
+  { num:'01', tools:['Claude','Gemini'], title:'10人分の仕事を2人で回す。「生成AIを活用する企業」と「踏査される会社」電気工事会社取締役が語る二極化の美来', url:'https://sites.google.com/view/202606073333/untitled-page', point:'実体験を用いて記事の作成をしたところです。また、サイトの構成も目次をクリックしたらそのチャプターまで自動でスクロールして飛ばすようにしてみました。記事の内容も説得力を持たせるようにエビデンスデータをリンクに貼りました。' },
+  { num:'02', tools:['Claude','Gemini'], title:'大谷翔平は、ただ運が良い人ではない。', url:'https://idyllic-alpaca-def71d.netlify.app/', point:'スクロールしたときにアニメーションを追加しました。大谷選手が１６歳で書いたといわれる曼荼羅チャートの作成もこだわりました。' },
+  { num:'03', tools:['Claude','Gemini'], title:'モーターの音が消え、音楽だけが残った', url:'https://sites.google.com/view/musicplayer3img2/mir2-4', point:'便利な時代になったなぁと思う裏で、技術者が奮闘しています。音楽と技術の進化を感じてもらえればと思います。\n\nたいしたギミックは無いですが、目次のリンクと画像のポップアップを実装してみました。\n\n※macでは画像が表示できないと思われます。（ここ分かりません）' },
+  { num:'04', tools:['Claude','ChatGPT','Gemini'], title:'「うちには無理」が、ほどけていく ― 伊東の湯けむりから考える、AI時代のインバウンド', url:'https://sites.google.com/planet-law.com/inbound/inbound', point:'・E-E-A-Tを盛り込み、AIによる一般論ではなく個人の視点を全面に出した記事に仕立てたこと\n・観光庁など公式データを基にしたグラフを盛り込んで、記事の納得度を高めたこと\n・長文を読み飽きないよう、各章冒頭にポイントの配置や文章のカード化、クリック時の強調などビジュアルをリッチ化したこと\n・営業臭をおさえて、自然に自社サービスへの導線となるような構成としたこと' },
+  { num:'05', tools:['Claude','ChatGPT','Gemini'], title:'3大AIによる 執筆記事講評〜3大AIに3大AIをディープリサーチしてもらったらどうなるのか?〜', url:'https://sites.google.com/view/three-major-ai?usp=sharing', point:'皆さんが興味を持ちそうなテーマであること、AI自身にオリジナリティを出させたこと、人間のオリジナリティとしてAI補正していない記事感想・普段使い使用感の文章を作成して掲載したこと。' },
+  { num:'06', tools:['NotebookLM','Claude','Gemini'], title:'人は音も、食べている。私の小さな発見。', url:'https://sites.google.com/view/20260609naowad/index', point:'制作した課題は２部構成になっています。食感についてのレポートです。導入部で私が抱いた疑問をエッセイにし、私の好奇心に巻き込まれるような形でリサーチへと続く設計にしました。' },
+  { num:'07', tools:['Perplexity','Claude','Gemini'], title:'強いチームを作る５つのームを作る５つの仕組み', url:'https://docs.google.com/document/d/1OZdZwuAkBCPIZh7nWUNIbaacezndAao28ZVEHJtwQYU/edit?tab=t.0', point:'Perplexityで深くリサーチを行い、より身近・実感を文章に持たせるために、実例・具体例をClaude・Geminiにも問い合わせました。一般的な説明だけでなく、それぞれの現場でも応用できるように、この情報をもとにチェックできるようにチェックリストも足しこみました。' },
+  { num:'08', tools:['NotebookLM','Claude','Gemini'], title:'「すぐ失業手当がもらえる」の甘い罠——SNSの退職ハックに群がるアフィリエイターの黒い裏側と最大3倍返しの代償', url:'https://rococo-gingersnap-6e464f.netlify.app/', point:'社会保険労務士事務所に勤務しているからこそ日々感じているSNSで見かけるモヤモヤを可視化して記事に消化しました。退職代行利用率の推移・アフィリエイト報酬構造・不正受給ペナルティ情報を網羅し、マーケター神田昌典さんが提唱する新PASONAの法則に沿った構成で、社労士事務所の現場エピソード（私の実体験）による一次情報も組み込んでいます。\n\n皆さんも騙されないように！気になることは専門家に相談してくださいね。' },
+  { num:'09', tools:['Perplexity','Claude','ChatGPT','Gemini'], title:'朝一番の「遮断」が、 脳を救う。', url:'https://sites.google.com/view/kadai4/%E6%9C%9D%E3%81%AE%E3%83%89%E3%83%BC%E3%83%91%E3%83%9F%E3%83%B3%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E8%A1%93', point:'・脳疲労の話にしたので、サイトも脳に優しい？ライトな印象の色使いにしました。\n・ChatGPTとPerplexity両方で調べて十分な情報を集めて、エビデンスが整っている記事にすることで納得感をあげることを心掛けました。\n・記事のベースはGEMINIで作り、細かい微調整や最終化はClaudeにしました。\n・用語がわからない人向けに用語集を付けました。' },
+  { num:'10', tools:['NotebookLM','Perplexity','Claude','Gemini'], title:'週末農業・半農半Xを賢く始める実践ガイド', url:'https://weekend-farming.netlify.app/', point:'とりあえず自分の興味があって知見のある領域をテーマにしました。基本的にデータは最新のもので揃え、リンクも間違いないように確認してます。実際に半農半Xを実践する際に間違いなくお役に立てるHPにすべく、実際の県域事例を取り込んだり、価格なども概ね間違いのない範囲での実績値も活用してます。時間は概ねオーパス4.8をフル稼働？にて６～７時間くらいかかりましたが、VSコードもフル活用で写真の修整や文字の折り返し表示等に注意しながら仕立てました。\n\n※この作業を進めるうちに今回の一連の講義があらためて大変ありがたい内容であることを痛感しました。一方でまだまだ知らないことだらけであることにも、あらためて気づきました。今後ともよろしくお願いいたします。' },
+  { num:'11', tools:['NotebookLM','ChatGPT','Gemini'], title:'鳥は恐竜の子孫ではない。 生き残った恐竜だ！', url:'https://gorgeous-gumption-ca05a7.netlify.app/', point:'当初Googleサイトからの公開を目指して、Googleドライブに置いた画像をHTMLへリンクさせようと四苦八苦しましたが、結局上手く出来ずに断念。すると、Geminiに「Netlifyから公開すればいいのに？」と言われ、実際やってみると、あっさりと画像が貼れて、なんか凄く拍子抜けした気分です。' },
+  { num:'12', tools:['NotebookLM','Perplexity','Claude','ChatGPT'], title:'「今夜もあと1話」が、年収を下げていた。— 日本人だけが知らないスリープテックの現実', url:'https://sleeptech-japan-report.netlify.app', point:'睡眠不足を「健康」ではなく「年収」の問題として切り込み、読者が３つのアンケートと自分の年収を入力すると年間損失額を試算できる診断ツールを実装。算出根拠と免責も明記しています。OECD最下位という日本の睡眠データを起点に、データと一人称の語りを往復させる構成と、ネイビーから夜明けへ向かう配色で「眠れない夜」の世界観を表現しました。SEO/構造化データ(Article)もGoogleのリッチリザルトテストにも合格しています。' },
+  { num:'13', tools:['NotebookLM','Perplexity','Claude'], title:'2026年、仮想通貨市場は 今どこにいるのか', url:'https://sgoymg21.github.io/crypto-report-2026/', point:'Claude にテーマ設定から、記事の構成案を壁打ちしながら、最近関心がある仮想通貨について現状を調べたい、もう少し知りたいという思いから内容をまとめてみました。Perplexityでデータを調査して、それらの結果と壁打ちの内容をまとめてNotebookLMにアップロードして、記事の内容を推敲しましたが、それもCluadeからのアドバイスでした。また記事の公開もGithubでおこないましたが、一つ一つの操作をスクリーンショットでClaudeで確認して、たどり着くことができました。' },
+  { num:'14', tools:['Claude'], title:'プログラムを1ミリも書かずに、チームの2時間の手作業を一瞬にした話', url:'https://storied-pika-e41740.netlify.app/', point:'初級編の第1回講義、第3回講義、第4回講義の内容を参考に、各講義の主要な要素を取り込んで作りました。今はまだ全く副業ができていませんが、近いうちに中小零細企業の業務改善コンサルとして活動することも見据えて作っています。また、講義の内容を参考にこの記事を作り、その工程を基に、記事を書くためのスキルと、プロジェクトも作成済みです。' },
+  { num:'15', tools:['NotebookLM','Perplexity','Claude','Gemini'], title:'世界のZ世代がコーヒーではなく「抹茶」に並ぶ理由。クアラルンプールで見た熱狂と、私たちが知らない日本の宝の真価', url:'https://sites.google.com/view/matchaassuperfood/assignment', point:'テーマは仕事で実際に扱っている商材「抹茶」です。クアラルンプールへの出張中に世界第8位のカフェ「Story of ONO」を訪れ、現地で肌で感じたブームの盛り上がりを記事にしたくて取り上げました。\n\n①【AIの役割分担】NotebookLM に一次情報（農水省統計・学術論文・市場レポート）を格納してナレッジベースを構築 → Gemini で記事のフレームワーク設計・Deep Research で市場調査を深掘り、その結果もNotebookLMに追加格納 → Perplexity で最新データをリアルタイム収集 → Claude で記事構成・HTML・デザインの全工程を実装、という4段階のワークフローで制作しています。\n\n②【現地取材写真】マレーシア・クアラルンプールへの出張時に自撮りした写真を使用。世界第8位のカフェ「Story of ONO」の店内・シグネチャードリンクを収録しています。\n\n③【データビジュアライズ】Chart.jsによる動的グラフ2本（日本の輸出額推移・世界市場予測）とSVGによるカフェイン吸収曲線を作成。農水省・Grand View Research・PLOS ONE 2024論文まで一次情報に当たっています。\n\n④【AEO対応】PerplexityやGoogle AI Overviewに引用されやすいクイックサマリーボックスを記事冒頭に設置し、AI検索最適化（AEO）も意識した構成にしています。' },
+  { num:'16', tools:['Perplexity','ChatGPT','Gemini'], title:'心とこころを繋ぐ「聴き方」のやさしい科学', url:'https://sites.google.com/view/13579kuni/%E5%88%9D%E7%B4%9A%E7%AC%AC4%E5%9B%9E%E8%AA%B2%E9%A1%8C', point:'職業人、ママ、妻、娘、嫁といろんな役どころを熟している子育て世代のママ、そしてパパに取り入れてみようと思ってもらえるよう、いろんな場面を想定してアクティブリスニングの効果・具体例を入れ込みました。' },
+  { num:'17', tools:['Claude','ChatGPT'], title:'AIが作るデザインは、なぜ「あと一歩」なのか', url:'https://stellar-puffpuff-bb654f.netlify.app/', point:'１）AI で LP やウェブデザインをデザインシステムを指定しないで最初のラフを出力する時に、ぱっと見は綺麗ですが AI っぽさやデザインで詰めの甘さなどがあり、いつも気になっていました。そこで、何故 AI から出力されたデザインは AI っぽいのか、何故デザインがいまいちだと感じるのか、それを解消する方法はないのだろうかと思い、今回このテーマにチャレンジしました。\n\n２）講座では、記事を固める → ページの構成を考える、という流れでしたが、今回のもう一つの目的として「AI っぽさをなくすプロンプトを受講者の方、講師の方に実行してもらって、どこがデザインのいまいちだった部分なのかを Before / After で分かるのがベスト」と思っていたので、AI に目的とゴールを伝えて、そのために必要なものとページ全体の構成を最初に考えさせました。そこに、ディープリサーチなどで調べた調査をどのようにはめていくのかを検証し、元原稿を作るという形で進めました。\n\n３）通常の記事構成よりも調べる事が多かったり、工程も多くなると思ったので、２）まで一旦形にしたら、AI に今後想定されるタスクを作業順にまとめてもらい、そちらに沿って課題を進めるようにしました。\n\n４）最後に「AI っぽさをなくす付録集」として、デザインルールをまとめた CLAUDE.md の中身を掲載しようと考えました。デザインの原則とウェブデザインの基礎の調査を AI に依頼し、それを元に AI に相談しながらデザインのプロンプトを色々と試して、md ファイルを作り上げていきました。そして、一旦形にした CLAUDE.md をウェブデザインにおける憲法扱い（大原則のルール）とし、原稿を作っていくときやデザインを修正する時に、そのデザインの憲法に沿っているか、違反していないか、憲法に記載が漏れている内容であれば検証をして憲法をアップデートしていく、という方法でつくりあげていきました。そうすることで、様々なデザインやページ構成があれど、外してはいけないデザインの大原則を守り、一貫性のある LP やウェブデザインが出力されるようにしました。\n\n５）できれば、「AIっぽさをなくす付録集」で、ただ AI に「カフェの LP を作って」と指示した時と、それにプラスして各 Lv のプロンプトを追記して指示した時の、それぞれの結果を試していただき、感想を教えていただけると嬉しいです。おかしな表示になったら、そのキャプチャーもいただいて、AI に憲法の修正を指示したりもできるので。\n\n６）作業がかなり膨大で、途中から課題提出に間に合うか不安になったので、AI に ３）でまとめたタスクにかかる時間を概算でざっくり出してもらいました。そうすることで、当初のページの構成から今回は省いて提出できるまでの形にギリギリなんとかもっていくことができました。その点でもタスクの洗い出しとその概要を AI に事前にまとめておいてもらったことは良かったと思っています。\n\nテキストがまだ AI っぽいところがあるなと感じますし、ページのデザインをもっと改善したかったのですが、最初に計画していた内容で何とか形にできたことは、ホッとしています。\n\nかなり時間を使ったので、期限後もページをアップデートし、憲法も更新して完成版に近づけたいと思います。\n\n（デザインシステムがあるので、そこまでしなくてもよいかもしれませんが、、ウェブデザインの原則を完成させ、その上で反映したいデザインシステムで上書きする形にすれば、どんな時でもウェブデザインの原則が担保されたものを出力できればと考えています）' },
+  { num:'18', tools:['NotebookLM','Perplexity','Claude','Gemini'], title:'競馬初心者ガイド', url:'https://sites.google.com/view/horsecheck-2026/%E7%AB%B6%E9%A6%AC%E3%82%AC%E3%82%A4%E3%83%89', point:'NotebookLMとPerplexityは「得意分野」が全く異なるとの事なので、組み合わせて使用した。Perplexityで最新データを集め、NotebookLMで整理・分析する手法を用いた。記事の内容に注目してほしい。と言いつつ自分が出したいテーマとちょっとずれてます。時間なく断念。' },
+  { num:'19', tools:['NotebookLM','Perplexity','Claude','Gemini'], title:'日本の水族館からラッコがいなくなる日', url:'https://sites.google.com/view/kikuhara1234/%E6%97%A5%E6%9C%AC%E3%81%AE%E6%B0%B4%E6%97%8F%E9%A4%A8%E3%81%8B%E3%82%89%E3%83%A9%E3%83%83%E3%82%B3%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E6%97%A5', point:'パンダの次に日本で見られなくなる動物と言われているラッコですが、実は北海道に生息し始めています。このニュースを皆さんにも知ってほしくて記事を作りました。' }
+];
+ARTICLES.forEach(function(a, i){ a.accent = PALETTE[i % PALETTE.length]; });
+
+/* ---- state ---- */
+var state = {
+  votedId: null,
+  expanded: {},
+  pendingVote: null,
+  commentInput: ''
+};
+
+function load(){
+  try {
+    var v = localStorage.getItem('grandprix_vote');
+    var c = localStorage.getItem('grandprix_comment') || '';
+    if (v) { state.votedId = v; state.commentInput = c; }
+  } catch (e) {}
+}
+
+function voterId(){
+  try {
+    var id = localStorage.getItem('grandprix_voter');
+    if (!id) { id = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); localStorage.setItem('grandprix_voter', id); }
+    return id;
+  } catch (e) { return 'v0'; }
+}
+
+function postVote(articleId, comment){
+  var url = (WEB_APP_URL || '').trim();
+  if (!url) return;
+  try {
+    fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action:'vote', articleId: articleId, voterId: voterId(), comment: comment || '' })
+    });
+  } catch (e) {}
+}
+
+/* ---- actions ---- */
+function openVoteModal(id){
+  if (state.votedId != null) return;
+  state.pendingVote = id;
+  state.commentInput = '';
+  render();
+}
+function closeVoteModal(){ state.pendingVote = null; render(); }
+function confirmVote(){
+  var id = state.pendingVote;
+  if (id == null) return;
+  var comment = (state.commentInput || '').trim();
+  try {
+    localStorage.setItem('grandprix_vote', id);
+    localStorage.setItem('grandprix_comment', comment);
+  } catch (e) {}
+  state.votedId = id;
+  state.pendingVote = null;
+  postVote(id, comment);
+  render();
+}
+function cancelVote(){
+  try {
+    localStorage.removeItem('grandprix_vote');
+    localStorage.removeItem('grandprix_comment');
+  } catch (e) {}
+  state.votedId = null;
+  state.commentInput = '';
+  postVote('cancel', '');
+  render();
+}
+function toggleExpand(id){
+  state.expanded[id] = !state.expanded[id];
+  render();
+}
+
+/* ---- helpers ---- */
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function find(id){
+  for (var i=0;i<ARTICLES.length;i++){ if (ARTICLES[i].num === id) return ARTICLES[i]; }
+  return null;
+}
+
+/* ---- render ---- */
+function render(){
+  var votedId = state.votedId;
+
+  /* banner */
+  var bannerEl = document.getElementById('banner');
+  if (votedId != null){
+    var myComment = (state.commentInput || '').trim();
+    var commentHtml = myComment.length > 0
+      ? '<div class="mycomment">💬 ' + esc(myComment) + '</div>' : '';
+    bannerEl.innerHTML =
+      '<div class="thanks">' +
+        '<div class="emoji">🎉</div>' +
+        '<div class="body">' +
+          '<div class="t1">投票ありがとうございます！</div>' +
+          '<div class="t2">あなたの1票は <b>作品' + esc(votedId) + '</b> に入りました。</div>' +
+          commentHtml +
+        '</div>' +
+        '<button class="redo" type="button" onclick="cancelVote()">投票しなおす</button>' +
+      '</div>';
+  } else {
+    bannerEl.innerHTML = '';
+  }
+
+  /* cards */
+  var grid = document.getElementById('grid');
+  var html = '';
+  for (var i=0;i<ARTICLES.length;i++){
+    var a = ARTICLES[i];
+    var point = a.point || '';
+    var long = point.length > 150;
+    var isExp = !!state.expanded[a.num];
+    var collapsed = long && !isExp;
+
+    var chips = '';
+    for (var j=0;j<a.tools.length;j++){
+      var t = a.tools[j];
+      var c = TOOLS[t] || ['#EEEAE0','#6B6452'];
+      chips += '<span class="chip" style="background:' + c[0] + ';color:' + c[1] + ';border-color:' + c[1] + ';">' + esc(t) + '</span>';
+    }
+
+    var fade = collapsed ? '<div class="fade"></div>' : '';
+    var toggle = long
+      ? '<button class="toggle" type="button" onclick="toggleExpand(\'' + a.num + '\')">' + (isExp ? '閉じる ▴' : 'もっと読む ▾') + '</button>'
+      : '';
+
+    var voteBtn;
+    if (votedId == null){
+      voteBtn = '<button class="btn btn-vote" type="button" onclick="openVoteModal(\'' + a.num + '\')">♥ 投票する</button>';
+    } else if (votedId === a.num){
+      voteBtn = '<button class="btn btn-mine" type="button" onclick="cancelVote()">✓ 投票済み</button>';
+    } else {
+      voteBtn = '<button class="btn btn-locked" type="button" disabled>投票する</button>';
+    }
+
+    html +=
+      '<div class="card">' +
+        '<div class="accentbar" style="background:' + a.accent + ';"></div>' +
+        '<div class="inner">' +
+          '<div class="head">' +
+            '<div class="numbox" style="background:' + a.accent + ';">' + esc(a.num) + '</div>' +
+            '<div class="entry">ENTRY No.' + esc(a.num) + '</div>' +
+          '</div>' +
+          '<h3>' + esc(a.title) + '</h3>' +
+          '<div class="chips">' + chips + '</div>' +
+          '<div class="point">' +
+            '<div class="label">✨ こだわりポイント</div>' +
+            '<div class="textwrap">' +
+              '<div class="text" style="max-height:' + (collapsed ? '132px' : 'none') + ';">' + esc(point) + '</div>' +
+              fade +
+            '</div>' +
+            toggle +
+          '</div>' +
+        '</div>' +
+        '<div class="actions">' +
+          '<a class="btn btn-read" href="' + esc(a.url) + '" target="_blank" rel="noopener">記事を読む ↗</a>' +
+          voteBtn +
+        '</div>' +
+      '</div>';
+  }
+  grid.innerHTML = html;
+
+  /* modal */
+  var modalRoot = document.getElementById('modal-root');
+  var pending = state.pendingVote;
+  if (pending != null){
+    var art = find(pending);
+    var accent = art ? art.accent : '#FF6B6B';
+    var count = (state.commentInput || '').length;
+    modalRoot.innerHTML =
+      '<div class="overlay" onclick="if(event.target===this)closeVoteModal()">' +
+        '<div class="modal">' +
+          '<div class="topbar" style="background:' + accent + ';"></div>' +
+          '<div class="pad">' +
+            '<div class="mhead">' +
+              '<div class="mnum" style="background:' + accent + ';">' + esc(art ? art.num : '') + '</div>' +
+              '<div style="flex:1;min-width:0;">' +
+                '<div class="mlabel">この作品に投票</div>' +
+                '<div class="mtitle">' + esc(art ? art.title : '') + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="guide">' +
+              '<div class="gl">🧭 投票基準（参考まで）</div>' +
+              '<div class="gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
+            '</div>' +
+            '<label class="clabel">💬 ひとことコメント <span class="opt">（任意）</span></label>' +
+            '<textarea id="comment-box" maxlength="200" rows="3" placeholder="この記事の好きなところ、応援メッセージなど（書かなくてもOK）" oninput="state.commentInput=this.value;document.getElementById(\'ccount\').textContent=this.value.length+\' / 200\';">' + esc(state.commentInput) + '</textarea>' +
+            '<div class="ccount" id="ccount">' + count + ' / 200</div>' +
+            '<div class="mactions">' +
+              '<button class="btn-cancelvote" type="button" onclick="closeVoteModal()">やめる</button>' +
+              '<button class="btn-confirm" type="button" onclick="confirmVote()">♥ 投票を確定する</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    var box = document.getElementById('comment-box');
+    if (box){ box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
+  } else {
+    modalRoot.innerHTML = '';
+  }
+}
+
+load();
+render();
+</script>
+</body>
+</html>
