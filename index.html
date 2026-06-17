@@ -97,9 +97,9 @@
   .btn-mine{background:#1E9E5A;color:#fff;}
   .btn-locked{background:#F0ECE2;color:#B7AE9B;border:2px solid #DDD3BF;box-shadow:none;cursor:not-allowed;}
 
-  .comment-open{
-    cursor:pointer;background:#fff;color:#2B2722;border:2px dashed #2B2722;border-radius:999px;
-    padding:9px 18px;font-weight:800;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 #2B2722;
+  .card-comment{
+    width:100%;cursor:pointer;background:#EAF4FF;color:#1c6fc0;border:2px dashed #4DABF7;border-radius:13px;
+    padding:10px 8px;font-weight:800;font-size:13px;font-family:inherit;
   }
 
   footer.foot{text-align:center;margin-top:54px;color:#B0A892;font-size:12.5px;font-weight:500;}
@@ -148,9 +148,6 @@
     <div class="rules">
       <span class="rule">🗳️ おひとり <span class="hl">1票</span></span>
       <span class="rule">🔁 投票はやり直しOK</span>
-    </div>
-    <div style="margin-top:14px;">
-      <button class="comment-open" type="button" onclick="openCommentModal()">💬 投票せずにコメントだけ送る</button>
     </div>
   </header>
 
@@ -215,7 +212,7 @@ var state = {
   expanded: {},
   pendingVote: null,
   commentInput: '',
-  pendingComment: false,
+  pendingComment: null,
   commentOnly: '',
   commentDone: false
 };
@@ -249,7 +246,7 @@ function postVote(articleId, comment){
   } catch (e) {}
 }
 
-function postComment(comment){
+function postComment(articleId, comment){
   var url = (WEB_APP_URL || '').trim();
   if (!url) return;
   try {
@@ -257,7 +254,7 @@ function postComment(comment){
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ action:'comment', voterId: voterId(), comment: comment || '' })
+      body: JSON.stringify({ action:'comment', articleId: articleId, voterId: voterId(), comment: comment || '' })
     });
   } catch (e) {}
 }
@@ -298,21 +295,23 @@ function toggleExpand(id){
   render();
 }
 
-/* ---- comment-only (投票せずにコメント) ---- */
-function openCommentModal(){
-  state.pendingComment = true;
+/* ---- comment (作品ごとに、投票せずにコメント) ---- */
+function openCommentModal(id){
+  state.pendingComment = id;
   state.commentOnly = '';
   render();
 }
 function closeCommentModal(){
-  state.pendingComment = false;
+  state.pendingComment = null;
   render();
 }
 function sendCommentOnly(){
+  var id = state.pendingComment;
   var c = (state.commentOnly || '').trim();
+  if (id == null){ return; }
   if (!c){ closeCommentModal(); return; }
-  postComment(c);
-  state.pendingComment = false;
+  postComment(id, c);
+  state.pendingComment = null;
   state.commentOnly = '';
   state.commentDone = true;
   render();
@@ -417,6 +416,9 @@ function render(){
           '<a class="btn btn-read" href="' + esc(a.url) + '" target="_blank" rel="noopener">記事を読む ↗</a>' +
           voteBtn +
         '</div>' +
+        '<div style="padding:10px 20px 0;">' +
+          '<button class="card-comment" type="button" onclick="openCommentModal(\'' + a.num + '\')">💬 この作品にコメントする（投票しなくてOK）</button>' +
+        '</div>' +
       '</div>';
   }
   grid.innerHTML = html;
@@ -456,18 +458,20 @@ function render(){
       '</div>';
     var box = document.getElementById('comment-box');
     if (box){ box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
-  } else if (state.pendingComment){
+  } else if (state.pendingComment != null){
+    var cart = find(state.pendingComment);
+    var caccent = cart ? cart.accent : '#4DABF7';
     var cocount = (state.commentOnly || '').length;
     modalRoot.innerHTML =
       '<div class="overlay" onclick="if(event.target===this)closeCommentModal()">' +
         '<div class="modal">' +
-          '<div class="topbar" style="background:#4DABF7;"></div>' +
+          '<div class="topbar" style="background:' + caccent + ';"></div>' +
           '<div class="pad">' +
             '<div class="mhead">' +
-              '<div class="mnum" style="background:#4DABF7;">💬</div>' +
+              '<div class="mnum" style="background:' + caccent + ';">' + esc(cart ? cart.num : '') + '</div>' +
               '<div style="flex:1;min-width:0;">' +
-                '<div class="mlabel">投票せずにコメント</div>' +
-                '<div class="mtitle">ひとことコメントを送る</div>' +
+                '<div class="mlabel">この作品にコメント（投票しません）</div>' +
+                '<div class="mtitle">' + esc(cart ? cart.title : '') + '</div>' +
               '</div>' +
             '</div>' +
             '<div class="guide">' +
