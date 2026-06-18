@@ -23,138 +23,138 @@
   ::selection{background:#FFD43B;}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-  .wrap{max-width:1280px;margin:0 auto;padding:34px 22px 96px;}
+  .aigp-wrap{max-width:1280px;margin:0 auto;padding:34px 22px 96px;}
 
   /* ---- header ---- */
-  header.hero{text-align:center;padding:18px 0 26px;position:relative;}
-  .badge{
+  header.aigp-hero{text-align:center;padding:18px 0 26px;position:relative;}
+  .aigp-badge{
     display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid #2B2722;
     border-radius:999px;padding:6px 16px;font-weight:700;font-size:13px;box-shadow:3px 3px 0 #2B2722;
   }
-  .badge .dot{width:9px;height:9px;border-radius:50%;background:#FF6B6B;display:inline-block;}
-  h1.title{
+  .aigp-badge .aigp-dot{width:9px;height:9px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+  h1.aigp-title{
     font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:clamp(34px,6vw,60px);
     line-height:1.08;margin:18px 0 6px;letter-spacing:.01em;
   }
-  h1.title .accent{color:#FF6B6B;}
-  h1.title .gp{
+  h1.aigp-title .aigp-accent{color:#FF6B6B;}
+  h1.aigp-title .aigp-gp{
     display:inline-block;background:#FFD43B;padding:0 12px;border-radius:14px;
     box-shadow:3px 3px 0 #2B2722;transform:rotate(-1.5deg);
   }
-  .lead{font-size:16px;font-weight:500;color:#6B6455;max-width:560px;margin:16px auto 0;line-height:1.7;}
-  .lead b{color:#33302A;}
-  .rules{display:inline-flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center;}
-  .rule{background:#fff;border:2px solid #2B2722;border-radius:999px;padding:7px 15px;font-weight:700;font-size:13px;}
-  .rule .hl{color:#FF6B6B;}
+  .aigp-lead{font-size:16px;font-weight:500;color:#6B6455;max-width:560px;margin:16px auto 0;line-height:1.7;}
+  .aigp-lead b{color:#33302A;}
+  .aigp-rules{display:inline-flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center;}
+  .aigp-rule{background:#fff;border:2px solid #2B2722;border-radius:999px;padding:7px 15px;font-weight:700;font-size:13px;}
+  .aigp-rule .aigp-hl{color:#FF6B6B;}
 
   /* ---- thank-you banner ---- */
-  .thanks{
+  .aigp-thanks{
     position:sticky;top:14px;z-index:30;margin:0 auto 24px;max-width:680px;background:#1E9E5A;color:#fff;
     border:2px solid #14633a;border-radius:18px;padding:14px 20px;display:flex;align-items:center;gap:14px;
     box-shadow:4px 5px 0 #14633a;
   }
-  .thanks .emoji{font-size:26px;animation:pulse 1.6s ease-in-out infinite;}
-  .thanks .body{flex:1;min-width:0;}
-  .thanks .t1{font-weight:800;font-size:15px;}
-  .thanks .t2{font-size:13px;opacity:.92;}
-  .thanks .mycomment{margin-top:7px;background:rgba(255,255,255,.16);border-radius:10px;padding:7px 11px;font-size:12.5px;line-height:1.6;}
-  .thanks .redo{
+  .aigp-thanks .aigp-emoji{font-size:26px;animation:pulse 1.6s ease-in-out infinite;}
+  .aigp-thanks .aigp-body{flex:1;min-width:0;}
+  .aigp-thanks .aigp-t1{font-weight:800;font-size:15px;}
+  .aigp-thanks .aigp-t2{font-size:13px;opacity:.92;}
+  .aigp-thanks .aigp-mycomment{margin-top:7px;background:rgba(255,255,255,.16);border-radius:10px;padding:7px 11px;font-size:12.5px;line-height:1.6;}
+  .aigp-thanks .aigp-redo{
     cursor:pointer;background:rgba(255,255,255,.18);color:#fff;border:2px solid rgba(255,255,255,.7);
     border-radius:999px;padding:7px 14px;font-weight:700;font-size:12.5px;font-family:inherit;white-space:nowrap;
   }
 
   /* ---- grid + cards ---- */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(355px,1fr));gap:22px;}
-  .card{
+  .aigp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(355px,1fr));gap:22px;}
+  .aigp-card{
     position:relative;background:#fff;border:2px solid #2B2722;border-radius:22px;padding:0 0 20px;
     box-shadow:5px 6px 0 rgba(43,39,34,.14);display:flex;flex-direction:column;overflow:hidden;
   }
-  .card .accentbar{height:8px;}
-  .card .inner{padding:18px 20px 0;display:flex;flex-direction:column;gap:13px;flex:1;}
-  .card .head{display:flex;align-items:center;gap:12px;}
-  .card .numbox{
+  .aigp-card .aigp-accentbar{height:8px;}
+  .aigp-card .aigp-inner{padding:18px 20px 0;display:flex;flex-direction:column;gap:13px;flex:1;}
+  .aigp-card .aigp-head{display:flex;align-items:center;gap:12px;}
+  .aigp-card .aigp-numbox{
     flex:none;width:50px;height:50px;border-radius:15px;border:2px solid #2B2722;display:flex;align-items:center;
     justify-content:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:20px;color:#fff;
     text-shadow:1px 1px 0 rgba(0,0,0,.25);box-shadow:2px 2px 0 #2B2722;
   }
-  .card .entry{font-weight:700;font-size:12px;color:#A39A86;letter-spacing:.14em;}
-  .card h3{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:19px;line-height:1.45;margin:0;text-wrap:pretty;}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;}
-  .chip{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;border-width:1.5px;border-style:solid;}
-  .point{background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:14px;padding:13px 15px;}
-  .point .label{font-weight:800;font-size:12.5px;color:#C99A1E;margin-bottom:7px;letter-spacing:.02em;}
-  .point .textwrap{position:relative;}
-  .point .text{white-space:pre-wrap;font-size:13.5px;line-height:1.75;color:#4A463D;overflow:hidden;}
-  .point .fade{position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(transparent,#FFFBF2);pointer-events:none;}
-  .point .toggle{margin-top:6px;cursor:pointer;background:none;border:none;color:#C99A1E;font-weight:800;font-size:12.5px;font-family:inherit;padding:2px 0;}
-  .actions{padding:14px 20px 0;display:flex;gap:10px;}
-  .btn{
+  .aigp-card .aigp-entry{font-weight:700;font-size:12px;color:#A39A86;letter-spacing:.14em;}
+  .aigp-card h3{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:19px;line-height:1.45;margin:0;text-wrap:pretty;}
+  .aigp-chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .aigp-chip{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;border-width:1.5px;border-style:solid;}
+  .aigp-point{background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:14px;padding:13px 15px;}
+  .aigp-point .aigp-label{font-weight:800;font-size:12.5px;color:#C99A1E;margin-bottom:7px;letter-spacing:.02em;}
+  .aigp-point .aigp-textwrap{position:relative;}
+  .aigp-point .aigp-text{white-space:pre-wrap;font-size:13.5px;line-height:1.75;color:#4A463D;overflow:hidden;}
+  .aigp-point .aigp-fade{position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(transparent,#FFFBF2);pointer-events:none;}
+  .aigp-point .aigp-toggle{margin-top:6px;cursor:pointer;background:none;border:none;color:#C99A1E;font-weight:800;font-size:12.5px;font-family:inherit;padding:2px 0;}
+  .aigp-actions{padding:14px 20px 0;display:flex;gap:10px;}
+  .aigp-btn{
     flex:1;text-align:center;text-decoration:none;border:2px solid #2B2722;border-radius:13px;padding:11px 8px;
     font-weight:800;font-size:13.5px;font-family:inherit;box-shadow:2px 2px 0 #2B2722;cursor:pointer;
   }
-  .btn-read{background:#fff;color:#2B2722;}
-  .btn-vote{background:#FF6B6B;color:#fff;}
-  .btn-mine{background:#1E9E5A;color:#fff;}
-  .btn-locked{background:#F0ECE2;color:#B7AE9B;border:2px solid #DDD3BF;box-shadow:none;cursor:not-allowed;}
+  .aigp-btn-read{background:#fff;color:#2B2722;}
+  .aigp-btn-vote{background:#FF6B6B;color:#fff;}
+  .aigp-btn-mine{background:#1E9E5A;color:#fff;}
+  .aigp-btn-locked{background:#F0ECE2;color:#B7AE9B;border:2px solid #DDD3BF;box-shadow:none;cursor:not-allowed;}
 
-  .card-comment{
+  .aigp-card-comment{
     width:100%;cursor:pointer;background:#EAF4FF;color:#1c6fc0;border:2px dashed #4DABF7;border-radius:13px;
     padding:10px 8px;font-weight:800;font-size:13px;font-family:inherit;
   }
 
-  footer.foot{text-align:center;margin-top:54px;color:#B0A892;font-size:12.5px;font-weight:500;}
+  footer.aigp-foot{text-align:center;margin-top:54px;color:#B0A892;font-size:12.5px;font-weight:500;}
 
   /* ---- vote modal ---- */
-  .overlay{
+  .aigp-overlay{
     position:fixed;inset:0;z-index:90;background:rgba(43,39,34,.55);backdrop-filter:blur(3px);
     display:flex;align-items:center;justify-content:center;padding:24px 16px;
   }
-  .modal{
+  .aigp-modal{
     width:100%;max-width:460px;background:#FFF8EE;border:2.5px solid #2B2722;border-radius:24px;
     box-shadow:8px 10px 0 rgba(43,39,34,.4);overflow:hidden;
   }
-  .modal .topbar{height:10px;}
-  .modal .pad{padding:22px 24px 24px;}
-  .modal .mhead{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
-  .modal .mnum{
+  .aigp-modal .aigp-topbar{height:10px;}
+  .aigp-modal .aigp-pad{padding:22px 24px 24px;}
+  .aigp-modal .aigp-mhead{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
+  .aigp-modal .aigp-mnum{
     flex:none;width:46px;height:46px;border-radius:14px;border:2px solid #2B2722;display:flex;align-items:center;
     justify-content:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:18px;color:#fff;box-shadow:2px 2px 0 #2B2722;
   }
-  .modal .mlabel{font-size:11px;font-weight:700;color:#A39A86;letter-spacing:.12em;}
-  .modal .mtitle{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:15px;line-height:1.4;text-wrap:pretty;}
-  .guide{margin-top:16px;background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:13px;padding:12px 14px;}
-  .guide .gl{font-weight:800;font-size:12px;color:#C99A1E;margin-bottom:5px;}
-  .guide .gt{font-size:12px;line-height:1.7;color:#6B6455;}
-  .guide .gt b{color:#33302A;}
-  .clabel{display:block;font-weight:800;font-size:13px;margin:16px 0 7px;}
-  .clabel .opt{color:#A39A86;font-weight:600;font-size:11.5px;}
+  .aigp-modal .aigp-mlabel{font-size:11px;font-weight:700;color:#A39A86;letter-spacing:.12em;}
+  .aigp-modal .aigp-mtitle{font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:15px;line-height:1.4;text-wrap:pretty;}
+  .aigp-guide{margin-top:16px;background:#FFFBF2;border:1.5px dashed #E4D9BE;border-radius:13px;padding:12px 14px;}
+  .aigp-guide .aigp-gl{font-weight:800;font-size:12px;color:#C99A1E;margin-bottom:5px;}
+  .aigp-guide .aigp-gt{font-size:12px;line-height:1.7;color:#6B6455;}
+  .aigp-guide .aigp-gt b{color:#33302A;}
+  .aigp-clabel{display:block;font-weight:800;font-size:13px;margin:16px 0 7px;}
+  .aigp-clabel .aigp-opt{color:#A39A86;font-weight:600;font-size:11.5px;}
   textarea{
     width:100%;resize:vertical;padding:11px 13px;border:2px solid #2B2722;border-radius:13px;font-size:13.5px;
     line-height:1.6;font-family:inherit;outline:none;background:#fff;
   }
-  .ccount{text-align:right;font-size:11px;color:#B0A892;margin-top:3px;}
-  .mactions{display:flex;gap:10px;margin-top:14px;}
-  .btn-cancelvote{flex:none;cursor:pointer;background:#fff;color:#2B2722;border:2px solid #2B2722;border-radius:13px;padding:12px 18px;font-weight:800;font-size:14px;font-family:inherit;}
-  .btn-confirm{flex:1;cursor:pointer;background:#FF6B6B;color:#fff;border:2px solid #2B2722;border-radius:13px;padding:12px 8px;font-weight:800;font-size:15px;font-family:inherit;box-shadow:3px 3px 0 #2B2722;}
+  .aigp-ccount{text-align:right;font-size:11px;color:#B0A892;margin-top:3px;}
+  .aigp-mactions{display:flex;gap:10px;margin-top:14px;}
+  .aigp-btn-cancelvote{flex:none;cursor:pointer;background:#fff;color:#2B2722;border:2px solid #2B2722;border-radius:13px;padding:12px 18px;font-weight:800;font-size:14px;font-family:inherit;}
+  .aigp-btn-confirm{flex:1;cursor:pointer;background:#FF6B6B;color:#fff;border:2px solid #2B2722;border-radius:13px;padding:12px 8px;font-weight:800;font-size:15px;font-family:inherit;box-shadow:3px 3px 0 #2B2722;}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="aigp-wrap">
 
-  <header class="hero">
-    <div class="badge"><span class="dot"></span>AI未来学院　初級　課題4</div>
-    <h1 class="title"><span class="accent">みんな</span>で選ぶ<br>AI記事 <span class="gp">グランプリ</span></h1>
-    <p class="lead">受講生 19作品の力作がそろいました。<br>気になる記事を読んで、<b>いちばん良かった1作品</b>に投票しよう！</p>
-    <div class="rules">
-      <span class="rule">🗳️ おひとり <span class="hl">1票</span></span>
-      <span class="rule">🔁 投票はやり直しOK</span>
+  <header class="aigp-hero">
+    <div class="aigp-badge"><span class="aigp-dot"></span>AI未来学院　初級　課題4</div>
+    <h1 class="aigp-title"><span class="aigp-accent">みんな</span>で選ぶ<br>AI記事 <span class="aigp-gp">グランプリ</span></h1>
+    <p class="aigp-lead">受講生 19作品の力作がそろいました。<br>気になる記事を読んで、<b>いちばん良かった1作品</b>に投票しよう！</p>
+    <div class="aigp-rules">
+      <span class="aigp-rule">🗳️ おひとり <span class="aigp-hl">1票</span></span>
+      <span class="aigp-rule">🔁 投票はやり直しOK</span>
     </div>
   </header>
 
   <div id="banner"></div>
-  <div id="grid" class="grid"></div>
+  <div id="grid" class="aigp-grid"></div>
 
-  <footer class="foot">
+  <footer class="aigp-foot">
     AI未来学院 初級 課題4 ・ 全19作品 ／ 投票は記事への敬意をこめて、1作品に。
   </footer>
 </div>
@@ -340,16 +340,16 @@ function render(){
   if (votedId != null){
     var myComment = (state.commentInput || '').trim();
     var commentHtml = myComment.length > 0
-      ? '<div class="mycomment">💬 ' + esc(myComment) + '</div>' : '';
+      ? '<div class="aigp-mycomment">💬 ' + esc(myComment) + '</div>' : '';
     bannerHtml +=
-      '<div class="thanks">' +
-        '<div class="emoji">🎉</div>' +
-        '<div class="body">' +
-          '<div class="t1">投票ありがとうございます！</div>' +
-          '<div class="t2">あなたの1票は <b>作品' + esc(votedId) + '</b> に入りました。</div>' +
+      '<div class="aigp-thanks">' +
+        '<div class="aigp-emoji">🎉</div>' +
+        '<div class="aigp-body">' +
+          '<div class="aigp-t1">投票ありがとうございます！</div>' +
+          '<div class="aigp-t2">あなたの1票は <b>作品' + esc(votedId) + '</b> に入りました。</div>' +
           commentHtml +
         '</div>' +
-        '<button class="redo" type="button" onclick="cancelVote()">投票しなおす</button>' +
+        '<button class="aigp-redo" type="button" onclick="cancelVote()">投票しなおす</button>' +
       '</div>';
   }
   if (state.commentDone){
@@ -376,48 +376,48 @@ function render(){
     for (var j=0;j<a.tools.length;j++){
       var t = a.tools[j];
       var c = TOOLS[t] || ['#EEEAE0','#6B6452'];
-      chips += '<span class="chip" style="background:' + c[0] + ';color:' + c[1] + ';border-color:' + c[1] + ';">' + esc(t) + '</span>';
+      chips += '<span class="aigp-chip" style="background:' + c[0] + ';color:' + c[1] + ';border-color:' + c[1] + ';">' + esc(t) + '</span>';
     }
 
-    var fade = collapsed ? '<div class="fade"></div>' : '';
+    var fade = collapsed ? '<div class="aigp-fade"></div>' : '';
     var toggle = long
-      ? '<button class="toggle" type="button" onclick="toggleExpand(\'' + a.num + '\')">' + (isExp ? '閉じる ▴' : 'もっと読む ▾') + '</button>'
+      ? '<button class="aigp-toggle" type="button" onclick="toggleExpand(\'' + a.num + '\')">' + (isExp ? '閉じる ▴' : 'もっと読む ▾') + '</button>'
       : '';
 
     var voteBtn;
     if (votedId == null){
-      voteBtn = '<button class="btn btn-vote" type="button" onclick="openVoteModal(\'' + a.num + '\')">♥ 投票する</button>';
+      voteBtn = '<button class="aigp-btn aigp-btn-vote" type="button" onclick="openVoteModal(\'' + a.num + '\')">♥ 投票する</button>';
     } else if (votedId === a.num){
-      voteBtn = '<button class="btn btn-mine" type="button" onclick="cancelVote()">✓ 投票済み</button>';
+      voteBtn = '<button class="aigp-btn aigp-btn-mine" type="button" onclick="cancelVote()">✓ 投票済み</button>';
     } else {
-      voteBtn = '<button class="btn btn-locked" type="button" disabled>投票する</button>';
+      voteBtn = '<button class="aigp-btn aigp-btn-locked" type="button" disabled>投票する</button>';
     }
 
     html +=
-      '<div class="card">' +
-        '<div class="accentbar" style="background:' + a.accent + ';"></div>' +
-        '<div class="inner">' +
-          '<div class="head">' +
-            '<div class="numbox" style="background:' + a.accent + ';">' + esc(a.num) + '</div>' +
-            '<div class="entry">ENTRY No.' + esc(a.num) + '</div>' +
+      '<div class="aigp-card">' +
+        '<div class="aigp-accentbar" style="background:' + a.accent + ';"></div>' +
+        '<div class="aigp-inner">' +
+          '<div class="aigp-head">' +
+            '<div class="aigp-numbox" style="background:' + a.accent + ';">' + esc(a.num) + '</div>' +
+            '<div class="aigp-entry">ENTRY No.' + esc(a.num) + '</div>' +
           '</div>' +
           '<h3>' + esc(a.title) + '</h3>' +
-          '<div class="chips">' + chips + '</div>' +
-          '<div class="point">' +
-            '<div class="label">✨ こだわりポイント</div>' +
-            '<div class="textwrap">' +
-              '<div class="text" style="max-height:' + (collapsed ? '132px' : 'none') + ';">' + esc(point) + '</div>' +
+          '<div class="aigp-chips">' + chips + '</div>' +
+          '<div class="aigp-point">' +
+            '<div class="aigp-label">✨ こだわりポイント</div>' +
+            '<div class="aigp-textwrap">' +
+              '<div class="aigp-text" style="max-height:' + (collapsed ? '132px' : 'none') + ';">' + esc(point) + '</div>' +
               fade +
             '</div>' +
             toggle +
           '</div>' +
         '</div>' +
-        '<div class="actions">' +
-          '<a class="btn btn-read" href="' + esc(a.url) + '" target="_blank" rel="noopener">記事を読む ↗</a>' +
+        '<div class="aigp-actions">' +
+          '<a class="aigp-btn aigp-btn-read" href="' + esc(a.url) + '" target="_blank" rel="noopener">記事を読む ↗</a>' +
           voteBtn +
         '</div>' +
         '<div style="padding:10px 20px 0;">' +
-          '<button class="card-comment" type="button" onclick="openCommentModal(\'' + a.num + '\')">💬 この作品にコメントする（投票しなくてOK）</button>' +
+          '<button class="aigp-card-comment" type="button" onclick="openCommentModal(\'' + a.num + '\')">💬 この作品にコメントする（投票しなくてOK）</button>' +
         '</div>' +
       '</div>';
   }
@@ -431,27 +431,27 @@ function render(){
     var accent = art ? art.accent : '#FF6B6B';
     var count = (state.commentInput || '').length;
     modalRoot.innerHTML =
-      '<div class="overlay" onclick="if(event.target===this)closeVoteModal()">' +
-        '<div class="modal">' +
-          '<div class="topbar" style="background:' + accent + ';"></div>' +
-          '<div class="pad">' +
-            '<div class="mhead">' +
-              '<div class="mnum" style="background:' + accent + ';">' + esc(art ? art.num : '') + '</div>' +
+      '<div class="aigp-overlay" onclick="if(event.target===this)closeVoteModal()">' +
+        '<div class="aigp-modal">' +
+          '<div class="aigp-topbar" style="background:' + accent + ';"></div>' +
+          '<div class="aigp-pad">' +
+            '<div class="aigp-mhead">' +
+              '<div class="aigp-mnum" style="background:' + accent + ';">' + esc(art ? art.num : '') + '</div>' +
               '<div style="flex:1;min-width:0;">' +
-                '<div class="mlabel">この作品に投票</div>' +
-                '<div class="mtitle">' + esc(art ? art.title : '') + '</div>' +
+                '<div class="aigp-mlabel">この作品に投票</div>' +
+                '<div class="aigp-mtitle">' + esc(art ? art.title : '') + '</div>' +
               '</div>' +
             '</div>' +
-            '<div class="guide">' +
-              '<div class="gl">🧭 投票基準（参考まで）</div>' +
-              '<div class="gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
+            '<div class="aigp-guide">' +
+              '<div class="aigp-gl">🧭 投票基準（参考まで）</div>' +
+              '<div class="aigp-gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
             '</div>' +
-            '<label class="clabel">💬 ひとことコメント <span class="opt">（任意）</span></label>' +
+            '<label class="aigp-clabel">💬 ひとことコメント <span class="aigp-opt">（任意）</span></label>' +
             '<textarea id="comment-box" maxlength="200" rows="3" placeholder="この記事の好きなところ、応援メッセージなど（書かなくてもOK）" oninput="state.commentInput=this.value;document.getElementById(\'ccount\').textContent=this.value.length+\' / 200\';">' + esc(state.commentInput) + '</textarea>' +
-            '<div class="ccount" id="ccount">' + count + ' / 200</div>' +
-            '<div class="mactions">' +
-              '<button class="btn-cancelvote" type="button" onclick="closeVoteModal()">やめる</button>' +
-              '<button class="btn-confirm" type="button" onclick="confirmVote()">♥ 投票を確定する</button>' +
+            '<div class="aigp-ccount" id="ccount">' + count + ' / 200</div>' +
+            '<div class="aigp-mactions">' +
+              '<button class="aigp-btn-cancelvote" type="button" onclick="closeVoteModal()">やめる</button>' +
+              '<button class="aigp-btn-confirm" type="button" onclick="confirmVote()">♥ 投票を確定する</button>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -463,27 +463,27 @@ function render(){
     var caccent = cart ? cart.accent : '#4DABF7';
     var cocount = (state.commentOnly || '').length;
     modalRoot.innerHTML =
-      '<div class="overlay" onclick="if(event.target===this)closeCommentModal()">' +
-        '<div class="modal">' +
-          '<div class="topbar" style="background:' + caccent + ';"></div>' +
-          '<div class="pad">' +
-            '<div class="mhead">' +
-              '<div class="mnum" style="background:' + caccent + ';">' + esc(cart ? cart.num : '') + '</div>' +
+      '<div class="aigp-overlay" onclick="if(event.target===this)closeCommentModal()">' +
+        '<div class="aigp-modal">' +
+          '<div class="aigp-topbar" style="background:' + caccent + ';"></div>' +
+          '<div class="aigp-pad">' +
+            '<div class="aigp-mhead">' +
+              '<div class="aigp-mnum" style="background:' + caccent + ';">' + esc(cart ? cart.num : '') + '</div>' +
               '<div style="flex:1;min-width:0;">' +
-                '<div class="mlabel">この作品にコメント（投票しません）</div>' +
-                '<div class="mtitle">' + esc(cart ? cart.title : '') + '</div>' +
+                '<div class="aigp-mlabel">この作品にコメント（投票しません）</div>' +
+                '<div class="aigp-mtitle">' + esc(cart ? cart.title : '') + '</div>' +
               '</div>' +
             '</div>' +
-            '<div class="guide">' +
-              '<div class="gl">🧭 コメントのヒント（参考まで）</div>' +
-              '<div class="gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
+            '<div class="aigp-guide">' +
+              '<div class="aigp-gl">🧭 コメントのヒント（参考まで）</div>' +
+              '<div class="aigp-gt">記事として面白かった／興味深かった／わかりやすかった／AIで書いたとは思えない／見やすい／デザイン性 など、<b>お一人お一人にお任せします</b>。</div>' +
             '</div>' +
-            '<label class="clabel">💬 コメント</label>' +
+            '<label class="aigp-clabel">💬 コメント</label>' +
             '<textarea id="comment-only-box" maxlength="200" rows="3" placeholder="感想や応援メッセージをどうぞ（投票はしません）" oninput="state.commentOnly=this.value;document.getElementById(\'cocount\').textContent=this.value.length+\' / 200\';">' + esc(state.commentOnly) + '</textarea>' +
-            '<div class="ccount" id="cocount">' + cocount + ' / 200</div>' +
-            '<div class="mactions">' +
-              '<button class="btn-cancelvote" type="button" onclick="closeCommentModal()">やめる</button>' +
-              '<button class="btn-confirm" type="button" style="background:#4DABF7;" onclick="sendCommentOnly()">送信する</button>' +
+            '<div class="aigp-ccount" id="cocount">' + cocount + ' / 200</div>' +
+            '<div class="aigp-mactions">' +
+              '<button class="aigp-btn-cancelvote" type="button" onclick="closeCommentModal()">やめる</button>' +
+              '<button class="aigp-btn-confirm" type="button" style="background:#4DABF7;" onclick="sendCommentOnly()">送信する</button>' +
             '</div>' +
           '</div>' +
         '</div>' +
